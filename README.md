@@ -1,19 +1,21 @@
 # EchoIp
 
-**TODO: Add description**
+Remote IP Address Responder Server
+
+## Developed with
+Erlang 18.1
+Elixir 1.1.1
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
+mix do deps.get, deps.compile
 
-  1. Add echo_ip to your list of dependencies in `mix.exs`:
+## How to run
 
-        def deps do
-          [{:echo_ip, "~> 0.0.1"}]
-        end
+iex -S mix server
 
-  2. Ensure echo_ip is started before your application:
+## License
 
-        def application do
-          [applications: [:echo_ip]]
-        end
+EchoIp is released under the MIT License.
+
+See LICENSE for details.
