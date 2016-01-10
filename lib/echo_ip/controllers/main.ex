@@ -8,12 +8,19 @@ defmodule EchoIp.Controllers.Main do
 
   def ip(conn, []) do
     x_fwd = Plug.Conn.get_req_header(conn, "x-forwarded-for")
-    Logger.debug(x_fwd)
-    # {ip__, _} = conn.peer
-    # ip_ = ip__
-    ip_ = conn.remote_ip
-          |> Tuple.to_list
-          |> List.foldr "", fn (x, acc) -> "." <> Integer.to_string(x) <> acc end
-    json conn, %{ip: String.slice(ip_, 1, String.length(ip_))}
+
+    ip_ = case x_fwd do
+      _ when length(x_fwd) != 0 -> String.split(hd(x_fwd), ",") |> List.last
+      _ -> conn.remote_ip |> fmt
+    end
+
+    json conn, %{ip: ip_}
+  end
+
+  defp fmt(ip_) do
+    ip__ = ip_
+            |> Tuple.to_list
+            |> List.foldr "", fn (x, acc) -> "." <> Integer.to_string(x) <> acc end
+    (fn i -> String.slice(i, 1, String.length(i) - 1) end).(ip__)
   end
 end
