@@ -6,7 +6,8 @@ defmodule EchoIp.Controllers.Main do
   end
 
   def ip(conn, []) do
-    ip_ = conn.remote_ip
+    {ip__, _} = conn.peer
+    ip_ = ip__
           |> Tuple.to_list
           |> List.foldr "", fn (x, acc) -> "." <> Integer.to_string(x) <> acc end
     json conn, %{ip: String.slice(ip_, 1, String.length(ip_))}
