@@ -16,7 +16,7 @@ defmodule EchoIp.Mixfile do
   def application do
     [
       mod: {EchoIp, []},
-      applications: [:logger]
+      applications: [:sugar, :logger]
     ]
   end
 

@@ -41,5 +41,5 @@ config :sugar,
 
 config :sugar, EchoIp.Router,
   https_only: false,
-  http: [ port: 4000 ],
+  http: [ port: System.get_env("PORT") ],
   https: false
