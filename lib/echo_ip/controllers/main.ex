@@ -17,10 +17,10 @@ defmodule EchoIp.Controllers.Main do
     json conn, %{ip: ip_}
   end
 
-  defp fmt(ip_) do
-    ip__ = ip_
-            |> Tuple.to_list
-            |> List.foldr "", fn (x, acc) -> "." <> Integer.to_string(x) <> acc end
-    (fn i -> String.slice(i, 1, String.length(i) - 1) end).(ip__)
+  defp fmt(ip) do
+    ip_ = ip
+          |> Tuple.to_list
+          |> List.foldr "", fn (x, acc) -> "." <> Integer.to_string(x) <> acc end
+    (fn i -> String.slice(i, 1, String.length(i) - 1) end).(ip_)
   end
 end
